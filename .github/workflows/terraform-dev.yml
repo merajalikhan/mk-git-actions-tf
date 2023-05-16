@@ -2,7 +2,7 @@ name: 'Databrick Deployment Workflow'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
   #pull_request:
   
 permissions:
@@ -33,7 +33,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init              
       run: |
-          export TF_WORKSPACE="staging"
+          export TF_WORKSPACE="dev"
           terraform init -input=false
           terraform workspace show
 
@@ -46,7 +46,7 @@ jobs:
     - name: Terraform Plan
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'                     
       run: |
-          export TF_WORKSPACE="staging"
+          export TF_WORKSPACE="dev"
           terraform plan -input=false
           
     #- name: Terraform Plan Status
@@ -59,7 +59,7 @@ jobs:
     - name: Terraform Apply             
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
-         export TF_WORKSPACE="staging"
+         export TF_WORKSPACE="dev"
          terraform apply -auto-approve     
       
       
