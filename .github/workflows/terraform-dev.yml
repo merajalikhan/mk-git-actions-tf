@@ -60,7 +60,7 @@ jobs:
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: |
          export TF_WORKSPACE="staging"
-         terraform apply -auto-approve     
-      
-      
-      
+         terraform apply -auto-approve    
+
+     
+    
